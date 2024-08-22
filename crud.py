@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 import sys, psycopg2, psycopg2.sql as sql
-
+import os
+from dotenv import load_dotenv
 
 class Crud:
-    def __init__(self, user, password, host, port, dbname, table, primarykey):
-        self.user = user
-        self.password = password
-        self.host = host
-        self.port = port
-        self.dbname = dbname
+    def __init__(self, table, primarykey):
+        load_dotenv()
+        self.user = os.getenv('USER')
+        self.password = os.getenv('PASSWORD')
+        self.host = os.getenv('HOST')
+        self.port = os.getenv('PORT')
+        self.dbname = os.getenv('DB_NAME')
         self.table = table
         self.primarykey = primarykey
         
